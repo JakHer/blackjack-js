@@ -14,6 +14,7 @@ Blackjack ReactJS project
 
 - React(17.0.1);
 - ESLint Airbnb
+- Prettier
 
 ## Setup
 

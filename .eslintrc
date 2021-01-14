@@ -1,7 +1,19 @@
 {
     "extends": [
-      "react-app",
       "airbnb",
-      "react-app/jest"
-    ]
+      "prettier",
+      "prettier/react"
+    ],
+
+    "env": {
+      "browser": true,
+      "node": true
+    },
+
+    "rules": {
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "react/jsx-uses-react": "off",
+      "react/react-in-jsx-scope": "off",
+      "quotes": [2, "single", { "avoidEscape": true }]
+    }
   }
