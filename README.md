@@ -13,6 +13,7 @@ Blackjack ReactJS project
 ## Tech Stack
 
 - React(17.0.1);
+- ESLint Airbnb
 
 ## Setup
 
