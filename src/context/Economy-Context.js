@@ -29,8 +29,8 @@ export const EconomyContextProvier = (props) => {
   const [money, setMoney] = useState(1000);
   const [bet, setBet] = useState(0);
 
-  // const [playerHand, setPlayerHand] = useState([]);
-  // const [playerScore, setPlayerScore] = useState([]);
+  const [playerHand, setPlayerHand] = useState([]);
+  const [playerScore, setPlayerScore] = useState([]);
 
   const [dealersHand, setDealersHand] = useState([]);
   const [dealerScore, setDealerScore] = useState([]);
@@ -49,6 +49,10 @@ export const EconomyContextProvier = (props) => {
     setDealersHand,
     dealerScore,
     setDealerScore,
+    playerHand,
+    setPlayerHand,
+    playerScore,
+    setPlayerScore,
   };
 
   return (
@@ -59,5 +63,9 @@ export const EconomyContextProvier = (props) => {
 export const useEconomyContext = () => useContext(EconomyContext);
 
 EconomyContextProvier.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.array,
+  ]).isRequired,
 };
