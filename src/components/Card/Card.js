@@ -1,5 +1,5 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import AppContext from '../../context';
 
 const StyledCard = styled.div`
   max-height: 200px;
@@ -16,14 +16,14 @@ const StyledImage = styled.img`
   max-height: 100px;
 `;
 
-const Card = () => (
-  <AppContext.Consumer>
-    {(img) => (
-      <StyledCard>
-        <StyledImage alt="card" src={img} />
-      </StyledCard>
-    )}
-  </AppContext.Consumer>
+const Card = ({ src }) => (
+  <StyledCard>
+    <StyledImage alt="card" src={src} />
+  </StyledCard>
 );
+
+Card.propTypes = {
+  src: PropTypes.string.isRequired,
+};
 
 export default Card;
