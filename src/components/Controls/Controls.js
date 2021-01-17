@@ -19,9 +19,12 @@ const Controls = () => {
     setPlayerHand,
     playerScore,
     setPlayerScore,
+    gameStarted,
+    setGameStart,
   } = useEconomyContext();
 
   const startGame = () => {
+    setGameStart(true);
     fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=4`)
       .then((resp) => resp.json())
       .then((json) => {
@@ -42,9 +45,9 @@ const Controls = () => {
 
   return (
     <>
-      {bet > 0 && deckID && (
+      {bet > 0 && deckID && !gameStarted && (
         <button type="button" onClick={startGame}>
-          New Game
+          Deal
         </button>
       )}
       {dealerScore > 0 && (

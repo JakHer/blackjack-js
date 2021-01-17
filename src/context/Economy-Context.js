@@ -24,6 +24,8 @@ export const EconomyContextProvier = (props) => {
     return cardValues[value];
   };
 
+  const betValues = [500, 100, 10, 1];
+
   const [deckID, setDeckID] = useState('');
 
   const [money, setMoney] = useState(1000);
@@ -34,6 +36,8 @@ export const EconomyContextProvier = (props) => {
 
   const [dealersHand, setDealersHand] = useState([]);
   const [dealerScore, setDealerScore] = useState([]);
+
+  const [gameStarted, setGameStart] = useState(false);
 
   const { children } = props;
 
@@ -53,6 +57,9 @@ export const EconomyContextProvier = (props) => {
     setPlayerHand,
     playerScore,
     setPlayerScore,
+    gameStarted,
+    setGameStart,
+    betValues,
   };
 
   return (

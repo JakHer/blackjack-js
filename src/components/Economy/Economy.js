@@ -16,12 +16,13 @@ export const Economy = () => {
   return (
     <>
       <div>
+        <h1>Place Your Bets</h1>
         <p>Money</p>
-        <p>{money}</p>
+        <p>{money}$</p>
       </div>
       <div>
         <p>Bet</p>
-        <p>{bet}</p>
+        <p>{bet}$</p>
         <BetButtons />
       </div>
     </>

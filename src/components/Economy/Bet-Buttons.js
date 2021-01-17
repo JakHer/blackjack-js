@@ -1,38 +1,68 @@
 import { useEconomyContext } from '../../context/Economy-Context';
 
 export const BetButtons = () => {
-  const { money, bet, setMoney, setBet } = useEconomyContext();
+  const {
+    money,
+    bet,
+    setMoney,
+    setBet,
+    gameStarted,
+    betValues,
+  } = useEconomyContext();
 
-  const increment = () => {
-    setBet(bet + 50);
-    setMoney(money - 50);
+  const increment = (amount) => {
+    setBet(bet + amount);
+    setMoney(money - amount);
   };
 
-  const decrement = () => {
-    setBet(bet - 50);
-    setMoney(money + 50);
+  const decrement = (amount) => {
+    setBet(bet - amount);
+    setMoney(money + amount);
   };
 
   return (
     <div>
-      {money <= 0 ? (
-        <button disabled onClick={increment} type="button">
-          Increase
+      {betValues.map((item) =>
+        money <= 0 || item > money || gameStarted ? (
+          <button disabled onClick={() => increment(item)} type="button">
+            +{item}
+          </button>
+        ) : (
+          <button onClick={() => increment(item)} type="button">
+            +{item}
+          </button>
+        ),
+      )}
+
+      {betValues.map((item) =>
+        bet <= 0 || bet < item || gameStarted ? (
+          <button disabled onClick={() => decrement(item)} type="button">
+            -{item}
+          </button>
+        ) : (
+          <button onClick={() => decrement(item)} type="button">
+            -{item}
+          </button>
+        ),
+      )}
+      {/* {money <= 0 || gameStarted ? (
+        <button disabled onClick={() => increment(500)} type="button">
+          +500
         </button>
       ) : (
-        <button onClick={increment} type="button">
-          Increase
+        <button onClick={() => increment(500)} type="button">
+          +500
         </button>
       )}
-      {bet <= 0 ? (
-        <button disabled onClick={decrement} type="button">
-          Decrease
+      {bet <= 0 || gameStarted ? (
+        <button disabled onClick={() => decrement(500)} type="button">
+          -500
         </button>
       ) : (
-        <button onClick={decrement} type="button">
-          Decrease
+        <button onClick={() => decrement(500)} type="button">
+          -500
         </button>
-      )}
+      )} */}
     </div>
   );
 };
