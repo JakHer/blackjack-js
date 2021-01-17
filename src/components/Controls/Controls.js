@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useEconomyContext } from '../../context/Economy-Context';
+import Actions from '../Actions/Actions';
 
 const StyledCard = styled.img`
   max-width: 100px;
@@ -21,10 +22,13 @@ const Controls = () => {
     setPlayerScore,
     gameStarted,
     setGameStart,
+    firstDeal,
+    setFirstDeal,
   } = useEconomyContext();
 
   const startGame = () => {
     setGameStart(true);
+    setFirstDeal(true);
     fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=4`)
       .then((resp) => resp.json())
       .then((json) => {
@@ -50,35 +54,52 @@ const Controls = () => {
           Deal
         </button>
       )}
-      {dealerScore > 0 && (
+      {dealerScore > 0 && gameStarted && (
         <div>
+          <Actions />
           <h2>Dealears hand</h2>
-          <p>
-            Dealears score: {dealerScore - returnValue(dealersHand[1].value)}
-          </p>
-          <ul>
-            {/* {dealersHand.map((item) => (
+
+          {firstDeal ? (
+            <p>
+              Dealears score: {dealerScore - returnValue(dealersHand[1].value)}
+            </p>
+          ) : (
+            <p>Dealears score: {dealerScore}</p>
+          )}
+
+          {/* {dealersHand.map((item) => (
               <li key={item.value + item.code}>
                 <img alt={item.value + item.code} src={item.image} />
               </li>
             ))} */}
-            <li key={dealersHand[0].value + dealersHand[0].code}>
-              <StyledCard
-                alt={dealersHand[0].value + dealersHand[0].code}
-                src={dealersHand[0].image}
-              />
-            </li>
-            <li>
-              <StyledCard
-                alt="Hidden Card"
-                src="https://www.pngkey.com/png/full/349-3492792_card-back.png"
-              />
-            </li>
-          </ul>
+          {firstDeal ? (
+            <ul>
+              <li key={dealersHand[0].value + dealersHand[0].code}>
+                <StyledCard
+                  alt={dealersHand[0].value + dealersHand[0].code}
+                  src={dealersHand[0].image}
+                />
+              </li>
+              <li>
+                <StyledCard
+                  alt="Hidden Card"
+                  src="https://www.pngkey.com/png/full/349-3492792_card-back.png"
+                />
+              </li>
+            </ul>
+          ) : (
+            <ul>
+              {dealersHand.map((item) => (
+                <li key={item.value + item.code}>
+                  <StyledCard alt={item.value + item.code} src={item.image} />
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
 
-      {playerScore > 0 && (
+      {playerScore > 0 && gameStarted && (
         <div>
           <h2>Players hand</h2>
           <p>Player score: {playerScore}</p>
