@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useEconomyContext } from '../../context/Economy-Context';
 
 const Actions = () => {
@@ -10,6 +11,11 @@ const Actions = () => {
     playerHand,
     setPlayerScore,
     playerScore,
+    setGameStart,
+    setBet,
+    money,
+    setMoney,
+    prize,
   } = useEconomyContext();
 
   const hit = () => {
@@ -29,6 +35,26 @@ const Actions = () => {
       setFirstDeal(false);
     }
   };
+
+  useEffect(() => {
+    if (playerScore > 21) {
+      console.log('LOSE KURWO');
+      console.log(money);
+      setGameStart(false);
+      setBet(0);
+      setPlayerScore(0);
+      setMoney(money);
+      setPlayerHand([]);
+    } else if (playerScore > 15) {
+      console.log('BLACKJACK');
+      setGameStart(false);
+      setMoney(money + prize * 1.5);
+      setBet(0);
+      setPlayerScore(0);
+      setPlayerHand([]);
+      console.log(prize * 1.5);
+    }
+  }, [playerScore]);
 
   return (
     <div>

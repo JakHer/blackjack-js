@@ -45,24 +45,6 @@ export const BetButtons = () => {
           </button>
         ),
       )}
-      {/* {money <= 0 || gameStarted ? (
-        <button disabled onClick={() => increment(500)} type="button">
-          +500
-        </button>
-      ) : (
-        <button onClick={() => increment(500)} type="button">
-          +500
-        </button>
-      )}
-      {bet <= 0 || gameStarted ? (
-        <button disabled onClick={() => decrement(500)} type="button">
-          -500
-        </button>
-      ) : (
-        <button onClick={() => decrement(500)} type="button">
-          -500
-        </button>
-      )} */}
     </div>
   );
 };

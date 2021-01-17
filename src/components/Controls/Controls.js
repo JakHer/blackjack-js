@@ -24,6 +24,8 @@ const Controls = () => {
     setGameStart,
     firstDeal,
     setFirstDeal,
+    prize,
+    setPrize,
   } = useEconomyContext();
 
   const startGame = () => {
@@ -44,6 +46,9 @@ const Controls = () => {
 
         setDealersHand(json.cards.slice(2, 4));
         setDealerScore(value2 + value3);
+      })
+      .then(() => {
+        setPrize(bet);
       });
   };
 
@@ -56,6 +61,7 @@ const Controls = () => {
       )}
       {dealerScore > 0 && gameStarted && (
         <div>
+          <p>{prize}</p>
           <Actions />
           <h2>Dealears hand</h2>
 
