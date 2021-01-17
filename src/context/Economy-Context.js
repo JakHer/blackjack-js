@@ -33,14 +33,28 @@ export const EconomyContextProvier = (props) => {
 
   const [prize, setPrize] = useState(0);
 
+  const [round, setRound] = useState(0);
+  const [roundArray, setRoundArray] = useState([]);
+
   const [playerHand, setPlayerHand] = useState([]);
   const [playerScore, setPlayerScore] = useState([]);
+
+  const [roundOver, setRoundOver] = useState(false);
 
   const [dealersHand, setDealersHand] = useState([]);
   const [dealerScore, setDealerScore] = useState([]);
 
+  const [playerWin, setPlayerWin] = useState(false);
+  const [dealerWin, setDealerWin] = useState(false);
+
   const [gameStarted, setGameStart] = useState(false);
   const [firstDeal, setFirstDeal] = useState(false);
+
+  const [dealerHistory, setDealerHistory] = useState([]);
+  const [playerHistory, setPlayerHistory] = useState([]);
+
+  const [dealerScoreHistory, setDealerScoreHistory] = useState([]);
+  const [playerScoreHistory, setPlayerScoreHistory] = useState([]);
 
   const { children } = props;
 
@@ -67,6 +81,24 @@ export const EconomyContextProvier = (props) => {
     setFirstDeal,
     prize,
     setPrize,
+    roundOver,
+    setRoundOver,
+    playerWin,
+    setPlayerWin,
+    dealerWin,
+    setDealerWin,
+    round,
+    setRound,
+    setDealerHistory,
+    dealerHistory,
+    playerHistory,
+    setPlayerHistory,
+    dealerScoreHistory,
+    setDealerScoreHistory,
+    playerScoreHistory,
+    setPlayerScoreHistory,
+    roundArray,
+    setRoundArray,
   };
 
   return (

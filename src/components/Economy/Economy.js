@@ -10,7 +10,8 @@ export const Economy = () => {
       .then((resp) => resp.json())
       .then((json) => {
         setDeckID(json.deck_id);
-      });
+      })
+      .catch((err) => console.log(err.name));
   }, []);
 
   return (

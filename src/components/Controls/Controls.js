@@ -26,11 +26,14 @@ const Controls = () => {
     setFirstDeal,
     prize,
     setPrize,
+    round,
+    setRound,
   } = useEconomyContext();
 
   const startGame = () => {
     setGameStart(true);
     setFirstDeal(true);
+    setRound(round + 1);
     fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=4`)
       .then((resp) => resp.json())
       .then((json) => {
@@ -47,6 +50,7 @@ const Controls = () => {
         setDealersHand(json.cards.slice(2, 4));
         setDealerScore(value2 + value3);
       })
+      .catch((err) => console.log(err.name))
       .then(() => {
         setPrize(bet);
       });
@@ -59,10 +63,12 @@ const Controls = () => {
           Deal
         </button>
       )}
+
       {dealerScore > 0 && gameStarted && (
         <div>
-          <p>{prize}</p>
           <Actions />
+          <p>{prize}</p>
+
           <h2>Dealears hand</h2>
 
           {firstDeal ? (
@@ -72,12 +78,6 @@ const Controls = () => {
           ) : (
             <p>Dealears score: {dealerScore}</p>
           )}
-
-          {/* {dealersHand.map((item) => (
-              <li key={item.value + item.code}>
-                <img alt={item.value + item.code} src={item.image} />
-              </li>
-            ))} */}
           {firstDeal ? (
             <ul>
               <li key={dealersHand[0].value + dealersHand[0].code}>
@@ -96,7 +96,7 @@ const Controls = () => {
           ) : (
             <ul>
               {dealersHand.map((item) => (
-                <li key={item.value + item.code}>
+                <li key={item.value + item.code + item.suit}>
                   <StyledCard alt={item.value + item.code} src={item.image} />
                 </li>
               ))}
@@ -111,7 +111,7 @@ const Controls = () => {
           <p>Player score: {playerScore}</p>
           <ul>
             {playerHand.map((item) => (
-              <li key={item.value + item.code}>
+              <li key={item.value + item.suit + item.code}>
                 <StyledCard alt={item.value + item.code} src={item.image} />
               </li>
             ))}
