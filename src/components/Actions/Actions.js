@@ -28,7 +28,7 @@ const Actions = () => {
     setDealerScore,
     round,
     dealersHand,
-    // firstDeal,
+    firstDeal,
     setDealerHistory,
     dealerHistory,
     playerHistory,
@@ -40,6 +40,8 @@ const Actions = () => {
     roundArray,
     setRoundArray,
     setRound,
+    tie,
+    setTie,
   } = useEconomyContext();
 
   const reset = () => {
@@ -96,42 +98,106 @@ const Actions = () => {
 
   const stand = () => {
     setFirstDeal(false);
+    if (dealerScore <= playerScore) {
+      fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`)
+        .then((resp) => resp.json())
+        .then((json) => {
+          const value0 = returnValue(json.cards[0].value);
 
-    // if (dealerScore > 15) {
-    //   fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`)
-    //     .then((resp) => resp.json())
-    //     .then((json) => {
-    //       const value0 = returnValue(json.cards[0].value);
+          setDealersHand([...dealersHand, json.cards[0]]);
 
-    //       setDealersHand([...dealersHand, json.cards[0]]);
-
-    //       setDealerScore(dealerScore + value0);
-    //       console.log(dealersHand);
-    //     });
-    // }
+          setDealerScore(dealerScore + value0);
+          console.log(dealersHand);
+        });
+    }
   };
 
   useEffect(() => {
     if (playerScore > 21) {
-      console.log('LOSE');
+      console.log('Player LOSE');
       setFirstDeal(false);
       setRoundOver(true);
       setDealerWin(true);
       setBet(0);
       setMoney(money);
-    } else if (playerScore === 21) {
-      console.log('BLACKJACK');
+    } else if (playerScore === 21 && !dealerScore === 21) {
+      console.log('PLAYER BLACKJACK');
       setFirstDeal(false);
       setRoundOver(true);
       setPlayerWin(true);
       setMoney(money + prize * 1.5);
       setBet(0);
+    } else if (playerScore === 21 && dealerScore === 21) {
+      console.log('Player ma blackjacka  i dealer tez weic remix');
+      setFirstDeal(false);
+      setRoundOver(true);
+      setTie(true);
+      setMoney(money + prize);
+      setBet(0);
     }
+
+    if (dealerScore > 21 && !firstDeal) {
+      console.log('Player wygrywa bo dealer ma wiecej niz 21');
+      setFirstDeal(false);
+      setRoundOver(true);
+      setPlayerWin(true);
+      setDealerWin(false);
+      setBet(0);
+      setMoney(money + prize * 1.5);
+    }
+
+    if (dealerScore === 21) {
+      console.log('Dealer ma blackJacka');
+      setFirstDeal(false);
+      setRoundOver(true);
+      setDealerWin(true);
+      setBet(0);
+      setMoney(money);
+    }
+
+    if (
+      dealerScore > playerScore &&
+      playerScore <= 21 &&
+      dealerScore < 21 &&
+      !firstDeal
+    ) {
+      console.log(
+        'Dealer wygrywa bo ma wiecej punktow i player nie ma blackjacka i dealer ma mniej niz 21 punktow',
+      );
+      setFirstDeal(false);
+      setRoundOver(true);
+      setDealerWin(true);
+      setTie(false);
+      setPlayerWin(false);
+      setBet(0);
+      setMoney(money);
+    }
+
+    if (playerScore === dealerScore && !firstDeal) {
+      console.log('TIE');
+      setFirstDeal(false);
+      setRoundOver(true);
+      setTie(true);
+      setBet(0);
+      setMoney(money + prize);
+      // setMoney(money + prize);
+      // setBet(0);
+    }
+
+    // if (playerScore > dealerScore && !firstDeal) {
+    //   console.log('Player Lose');
+    //   setFirstDeal(false);
+    //   setRoundOver(true);
+    //   setDealerWin(true);
+    //   setMoney(money);
+    //   setBet(0);
+    // }
+
     console.log(round);
     if (round > 5) {
       console.log('Game Over');
     }
-  }, [playerScore]);
+  }, [playerScore, dealerScore, firstDeal]);
 
   useEffect(() => {
     setDealerHistory([...dealerHistory, ...dealersHand]);
@@ -148,6 +214,7 @@ const Actions = () => {
       <button onClick={hit} type="button">
         Hit
       </button>
+      {console.log(`First Deal: ${firstDeal}`)}
       <button onClick={stand} type="button">
         Stand
       </button>
@@ -158,6 +225,7 @@ const Actions = () => {
         <p>Round {round} / 5</p>
         {dealerWin && <p>Dealer Wins!</p>}
         {playerWin && <p>Win {prize * 1.5}$</p>}
+        {tie && <p>Tie</p>}
         {round < 5 ? (
           <button type="button" onClick={reset}>
             Next Round
