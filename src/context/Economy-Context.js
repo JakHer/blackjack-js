@@ -62,6 +62,11 @@ export const EconomyContextProvier = (props) => {
 
   const [dealersMove, setDealersMove] = useState(false);
 
+  const historyFromStorage =
+    JSON.parse(localStorage.getItem('topHistoricResults')) || [];
+
+  const [historicArray, setHistoricArray] = useState(historyFromStorage || []);
+
   const { children } = props;
 
   const value = {
@@ -111,6 +116,8 @@ export const EconomyContextProvier = (props) => {
     setDealersMove,
     double,
     setDouble,
+    historicArray,
+    setHistoricArray,
   };
 
   return (

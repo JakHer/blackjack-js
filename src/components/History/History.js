@@ -8,13 +8,7 @@ const StyledHistory = styled.div`
 `;
 
 const History = () => {
-  const {
-    dealerHistory,
-    // playerHistory,
-    // dealerScoreHistory,
-    // playerScoreHistory,
-    roundArray,
-  } = useEconomyContext();
+  const { dealerHistory, roundArray } = useEconomyContext();
 
   return (
     <div>
@@ -33,9 +27,6 @@ const History = () => {
             <p>Dealer Score: {item[2]}</p>,
             <p>Player Score: {item[3]}</p>,
           ])}
-          {/* {roundArray.map((item) => item[0].map((dh) => <li>{dh.suit}</li>))}
-          <p>Playre Hand</p>
-          {roundArray.map((item) => item[1].map((ph) => <li>{ph.suit}</li>))} */}
         </StyledHistory>
       )}
     </div>

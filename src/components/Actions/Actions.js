@@ -47,6 +47,8 @@ const Actions = () => {
     double,
     setDouble,
     bet,
+    historicArray,
+    setHistoricArray,
   } = useEconomyContext();
 
   const reset = () => {
@@ -71,6 +73,7 @@ const Actions = () => {
       .then((json) => {
         console.log(json);
       })
+      .then(() => setHistoricArray([...historicArray, money]))
       .then(() => reset())
       .then(() => {
         setMoney(1000);
@@ -87,7 +90,7 @@ const Actions = () => {
       .then((json) => {
         const value0 = returnValue(json.cards[0].value);
 
-        setPlayerHand([...playerHand, ...json.cards[0]]);
+        setPlayerHand([...playerHand, ...json.cards]);
 
         setPlayerScore(playerScore + value0);
       })
@@ -204,7 +207,7 @@ const Actions = () => {
 
       if (
         dealerScore <= 21 &&
-        dealerScore > playerScore &&
+        dealerScore >= playerScore &&
         !firstDeal &&
         !dealersMove
       )
@@ -294,10 +297,10 @@ const Actions = () => {
       setMoney(money);
     }
 
-    console.log(round);
-    if (round === 5) {
-      console.log('Game Over');
-    }
+    // console.log(round);
+    // if (round === 5) {
+    //   console.log('Game Over');
+    // }
   }, [playerScore, dealerScore, firstDeal, dealersMove]);
 
   useEffect(() => {
