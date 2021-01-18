@@ -24,7 +24,6 @@ const Controls = () => {
     setGameStart,
     firstDeal,
     setFirstDeal,
-    prize,
     setPrize,
     round,
     setRound,
@@ -52,7 +51,7 @@ const Controls = () => {
       })
       .catch((err) => console.log(err.name))
       .then(() => {
-        setPrize(bet);
+        setPrize(bet * 1.5);
       });
   };
 
@@ -67,8 +66,6 @@ const Controls = () => {
       {dealerScore > 0 && gameStarted && (
         <div>
           <Actions />
-          <p>{prize}</p>
-
           <h2>Dealears hand</h2>
 
           {firstDeal ? (

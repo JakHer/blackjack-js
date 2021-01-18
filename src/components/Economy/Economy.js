@@ -2,8 +2,11 @@ import { useEffect } from 'react';
 import { useEconomyContext } from '../../context/Economy-Context';
 import { BetButtons } from './Bet-Buttons';
 
+import Money from './Money/Money';
+import Bet from './Bet/Bet';
+
 export const Economy = () => {
-  const { money, bet, setDeckID } = useEconomyContext();
+  const { setDeckID, gameStarted } = useEconomyContext();
 
   useEffect(() => {
     fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6')
@@ -11,19 +14,17 @@ export const Economy = () => {
       .then((json) => {
         setDeckID(json.deck_id);
       })
-      .catch((err) => console.log(err.name));
+      .catch((err) => console.log(err));
   }, []);
 
   return (
     <>
       <div>
-        <h1>Place Your Bets</h1>
-        <p>Money</p>
-        <p>{money}$</p>
+        {!gameStarted && <h1>Place Your Bets</h1>}
+        <Money />
       </div>
       <div>
-        <p>Bet</p>
-        <p>{bet}$</p>
+        <Bet />
         <BetButtons />
       </div>
     </>

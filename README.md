@@ -17,8 +17,15 @@ Blackjack ReactJS project
 - Prettier
 - PropTypes
 - Syled Components
+- ContextAPI
+- CustomHooks
 
 ## Setup
+
+## Known issues
+
+- https://deckofcardsapi.com/ returns often 500 error
+- due to 6 decks, lots of key repeating
 
 ### `npm start`
 
