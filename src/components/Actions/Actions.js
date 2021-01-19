@@ -51,6 +51,7 @@ const Actions = () => {
     setHistoricArray,
     denyDouble,
     setDenyDouble,
+    savedGame,
   } = useEconomyContext();
 
   const reset = () => {
@@ -102,9 +103,12 @@ const Actions = () => {
   };
 
   const stand = () => {
-    console.log(dealerScore);
-    console.log(playerScore);
+    // console.log(dealerScore);
+    // console.log(playerScore);
     setFirstDeal(false);
+
+    console.log(dealersHand);
+    console.log(playerHand);
 
     let value0 = 0;
 
@@ -130,7 +134,10 @@ const Actions = () => {
   };
 
   useEffect(() => {
-    console.log(`${dealerScore} ${playerScore} ${firstDeal} ${dealersMove}}`);
+    console.log(`${dealerScore} ${playerScore} ${firstDeal} ${dealersMove}`);
+
+    console.log(`Is round over: ${roundOver}`);
+    console.log(`Round ${round}`);
 
     if (double && firstDeal) {
       setPrize(prize * 2);
@@ -305,12 +312,7 @@ const Actions = () => {
       setBet(0);
       setMoney(money);
     }
-
-    // console.log(round);
-    // if (round === 5) {
-    //   console.log('Game Over');
-    // }
-  }, [playerScore, dealerScore, firstDeal, dealersMove]);
+  }, [playerScore, dealerScore, firstDeal, dealersMove, savedGame]);
 
   useEffect(() => {
     setDealerHistory([...dealerHistory, ...dealersHand]);

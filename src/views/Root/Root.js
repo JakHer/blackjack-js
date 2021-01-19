@@ -5,10 +5,12 @@ import { EconomyContextProvier } from '../../context/Economy-Context';
 import { Economy } from '../../components/Economy/Economy';
 import History from '../../components/History/History';
 import ScoreHistory from '../../components/ScoreHistory/ScoreHistory';
+import SaveLoadGame from '../../components/SaveLoadGame/SaveLoadGame';
 
 const Root = () => (
   <>
     <EconomyContextProvier>
+      <SaveLoadGame />
       <Economy />
       <Controls />
       <History />
