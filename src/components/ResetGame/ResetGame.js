@@ -15,13 +15,13 @@ const ResetGame = () => {
     setMoney,
     setRound,
     setRoundArray,
-    round,
     setBet,
     setJustLoaded,
+    round,
+    bet,
   } = useEconomyContext();
 
   const resetGame = () => {
-    console.log('Wchodzi w to wgl?');
     setPlayerWin(false);
     setDealerWin(false);
     setTie(false);
@@ -39,12 +39,12 @@ const ResetGame = () => {
     setJustLoaded(false);
   };
 
-  return round > 0 ? (
-    <button onClick={resetGame} type="button">
+  return round === 0 && bet === 0 ? (
+    <button disabled onClick={resetGame} type="button">
       Reset Game
     </button>
   ) : (
-    <button disabled onClick={resetGame} type="button">
+    <button onClick={resetGame} type="button">
       Reset Game
     </button>
   );

@@ -23,11 +23,9 @@ const LoadGame = () => {
   };
 
   useEffect(() => {
-    console.log(savedGame);
     const localStorageSavedGame = JSON.parse(localStorage.getItem('savedGame'));
 
     if (localStorageSavedGame) {
-      console.log(localStorageSavedGame);
       setSaveGame(localStorageSavedGame);
     }
   }, []);

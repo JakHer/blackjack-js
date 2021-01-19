@@ -27,6 +27,7 @@ Blackjack ReactJS project
 
 - https://deckofcardsapi.com/ returns often 500 error
 - due to 6 decks, lots of key repeating
+  -prompt on the closing window is generic by default, changing prevented by browser, the game is saved
 
 ### `npm start`
 
