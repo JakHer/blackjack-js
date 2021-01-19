@@ -1,4 +1,4 @@
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useEconomyContext } from '../../../context/Economy-Context';
 
 const LoadGame = () => {
@@ -9,20 +9,30 @@ const LoadGame = () => {
     setRoundArray,
     setBet,
     gameStarted,
+    setSaveGame,
+    gameJustLoaded,
+    setJustLoaded,
   } = useEconomyContext();
-
-  //   useEffect(() => {
-  //     console.log(savedGame);
-  //   }, [savedGame]);
 
   const handleLoadGame = () => {
     setMoney(savedGame[0]);
     setRound(savedGame[1]);
     setRoundArray(savedGame[2]);
     setBet(0);
+    setJustLoaded(true);
   };
 
-  return savedGame.length > 0 && !gameStarted ? (
+  useEffect(() => {
+    console.log(savedGame);
+    const localStorageSavedGame = JSON.parse(localStorage.getItem('savedGame'));
+
+    if (localStorageSavedGame) {
+      console.log(localStorageSavedGame);
+      setSaveGame(localStorageSavedGame);
+    }
+  }, []);
+
+  return savedGame.length > 0 && !gameStarted && !gameJustLoaded ? (
     <button onClick={handleLoadGame} type="button">
       Load Game
     </button>

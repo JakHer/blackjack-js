@@ -27,12 +27,14 @@ const Controls = () => {
     setPrize,
     round,
     setRound,
+    setJustLoaded,
   } = useEconomyContext();
 
   const startGame = () => {
     setGameStart(true);
     setFirstDeal(true);
     setRound(round + 1);
+    setJustLoaded(false);
     fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=4`)
       .then((resp) => resp.json())
       .then((json) => {

@@ -19,6 +19,7 @@ Blackjack ReactJS project
 - Syled Components
 - ContextAPI
 - CustomHooks
+- localStorage
 
 ## Setup
 

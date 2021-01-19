@@ -62,6 +62,7 @@ const Actions = () => {
 
     setPlayerWin(false);
     setDealerWin(false);
+    setTie(false);
     setGameStart(false);
     setRoundOver(false);
     setDenyDouble(false);
