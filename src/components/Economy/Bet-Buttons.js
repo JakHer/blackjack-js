@@ -21,15 +21,17 @@ const StyledButton = styled.button`
 
 const StyledContainer = styled.div`
   position: absolute;
-  top: 150px;
+  top: 50%;
   left: 50%;
-  margin-left: -200px;
-  width: 400px;
+  margin-top: -100px;
+  margin-left: -50px;
+  width: 100px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  min-height: 100px;
+  height: 100px;
+  z-index: 2;
 `;
 
 const StyledCoinsContainer = styled.div`

@@ -135,7 +135,9 @@ const Actions = () => {
   };
 
   useEffect(() => {
-    console.log(`${dealerScore} ${playerScore} ${firstDeal} ${dealersMove}`);
+    console.log(
+      `ILE MAJOM DILERZY: ${dealerScore} ${playerScore} ${firstDeal} ${dealersMove}`,
+    );
 
     console.log(`Is round over: ${roundOver}`);
     console.log(`Round ${round}`);
@@ -147,6 +149,11 @@ const Actions = () => {
       if (playerScore <= 21) {
         stand();
       }
+    }
+
+    if (dealerScore === 21 && firstDeal && !dealersMove) {
+      console.log('To Tu KURWO');
+      // setPlayersMove(true);
     }
 
     if (playerScore > 21 && !roundOver) {
@@ -172,7 +179,7 @@ const Actions = () => {
       setTie(true);
       setMoney(money);
       setBet(0);
-    } else if (dealerScore === 21 && playerScore < dealerScore) {
+    } else if (dealerScore === 21 && playerScore < dealerScore && !firstDeal) {
       console.log('Wygrwa diler bo ma 21 i wiecej niz player');
       setFirstDeal(false);
       setDealersMove(false);

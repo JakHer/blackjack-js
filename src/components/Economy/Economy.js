@@ -8,10 +8,18 @@ import Bet from './Bet/Bet';
 const StyledPlaceBet = styled.h2`
   color: #fff;
   text-align: center;
+  margin-top: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 40px;
+  margin-left: -125px;
+  margin-top: -200px;
 `;
 
 export const Economy = () => {
-  const { setDeckID, gameStarted } = useEconomyContext();
+  const { setDeckID, gameStarted, roundOver } = useEconomyContext();
 
   useEffect(() => {
     fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6')
@@ -29,7 +37,7 @@ export const Economy = () => {
       </div>
       <div>
         <Bet />
-        <BetButtons />
+        {!roundOver && !gameStarted && <BetButtons />}
       </div>
     </>
   );

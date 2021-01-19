@@ -7,7 +7,7 @@ const StyledRound = styled.p`
   width: 150px;
   margin-right: -75px;
   right: 50%;
-  top: 0;
+  top: 50px;
 `;
 
 const CurrentRound = () => {

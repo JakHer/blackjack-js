@@ -7,6 +7,26 @@ const StyledCard = styled.img`
   max-height: 100px;
 `;
 
+const StyledDeal = styled.button`
+  outline: none;
+  border: none;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 20px;
+  margin-top: 30px;
+  margin-left: -100px;
+  width: 200px;
+  transition: 0.4s ease color;
+
+  :hover {
+    color: red;
+  }
+`;
+
 const Controls = () => {
   const {
     bet,
@@ -43,8 +63,6 @@ const Controls = () => {
         const value2 = returnValue(json.cards[2].value);
         const value3 = returnValue(json.cards[3].value);
 
-        // json.cards.map((item) => returnValue(item.value));
-
         setPlayerHand(json.cards.slice(0, 2));
         setPlayerScore(value0 + value1);
 
@@ -60,9 +78,9 @@ const Controls = () => {
   return (
     <>
       {bet > 0 && deckID && !gameStarted && (
-        <button type="button" onClick={startGame}>
+        <StyledDeal type="button" onClick={startGame}>
           Deal
-        </button>
+        </StyledDeal>
       )}
 
       {dealerScore > 0 && gameStarted && (
