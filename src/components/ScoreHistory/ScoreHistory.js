@@ -50,12 +50,13 @@ const StyledHistoryContainer = styled.div`
 
 const StyledArrayComponent = styled.div`
   animation: ${slide} 0.4s ease 1;
-  background: rgba(149, 165, 166, 0.9);
+  background: rgb(189, 195, 199);
   z-index: 999;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 20px;
 `;
 
 const StyledUl = styled.ul`

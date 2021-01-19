@@ -8,12 +8,18 @@ import History from '../../components/History/History';
 import ScoreHistory from '../../components/ScoreHistory/ScoreHistory';
 import SaveLoadGame from '../../components/SaveLoadGame/SaveLoadGame';
 import ResetGame from '../../components/ResetGame/ResetGame';
+import CurrentRound from '../../components/CurrentRound/CurrentRound';
+import Money from '../../components/Economy/Money/Money';
+import Bet from '../../components/Economy/Bet/Bet';
 
 const Root = () => (
   <>
     <EconomyContextProvier>
       <SaveLoadGame />
+      <Money />
+      <Bet />
       <ResetGame />
+      <CurrentRound />
       <Economy />
       <Controls />
       <History />

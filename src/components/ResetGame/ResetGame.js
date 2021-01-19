@@ -1,4 +1,25 @@
+import styled from 'styled-components';
 import { useEconomyContext } from '../../context/Economy-Context';
+
+const StyledButton = styled.button`
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  width: 100px;
+  border: 1px solid #000;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  transition: 0.4s ease background;
+
+  :hover {
+    background: yellow;
+  }
+
+  :disabled {
+    display: none;
+  }
+`;
 
 const ResetGame = () => {
   const {
@@ -40,13 +61,13 @@ const ResetGame = () => {
   };
 
   return round === 0 && bet === 0 ? (
-    <button disabled onClick={resetGame} type="button">
+    <StyledButton disabled onClick={resetGame} type="button">
       Reset Game
-    </button>
+    </StyledButton>
   ) : (
-    <button onClick={resetGame} type="button">
+    <StyledButton onClick={resetGame} type="button">
       Reset Game
-    </button>
+    </StyledButton>
   );
 };
 

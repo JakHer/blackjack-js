@@ -1,5 +1,19 @@
-// import { useEffect } from 'react';
+import styled from 'styled-components';
 import { useEconomyContext } from '../../../context/Economy-Context';
+
+const StyledButton = styled.button`
+  border: none;
+  outline: none;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.4s ease background;
+  padding: 10px;
+
+  :hover {
+    background: brown;
+  }
+`;
 
 const SaveGame = () => {
   const {
@@ -7,47 +21,33 @@ const SaveGame = () => {
     savedGame,
     setSaveGame,
     money,
-    // roundOver,
     roundArray,
     gameStarted,
     gameJustLoaded,
   } = useEconomyContext();
 
   const handleSaveGame = () => {
-    console.log('Game Saved');
     setSaveGame([money, round, [...roundArray]]);
-    console.log(savedGame);
   };
-
-  //   useEffect(() => {
-  //
-  //   }, [savedGame]);
 
   window.addEventListener('beforeunload', (e) => {
     e.preventDefault();
     if (savedGame.length > 0) {
       localStorage.setItem('savedGame', JSON.stringify(savedGame));
     }
-    const confirmationMessage = 'Some message';
-    e.returnValue = confirmationMessage; // Gecko, Trident, Chrome 34+
-    return confirmationMessage; // Gecko, WebKit, Chrome <34
+    const confirmationMessage = 'Game will be saved';
+    e.returnValue = confirmationMessage;
+    return confirmationMessage;
   });
 
-  //   useEffect(() => {
-  //     if (round >= 1 && roundOver) {
-  //       console.log(savedGame);
-  //       console.log(roundOver);
-  //     }
-  //   }, [savedGame]);
-
-  return round >= 1 && !gameStarted && !gameJustLoaded ? (
-    <button onClick={handleSaveGame} type="button">
-      Save game
-    </button>
-  ) : (
-    <button disabled type="button">
-      Save game
-    </button>
+  return (
+    round >= 1 &&
+    !gameStarted &&
+    !gameJustLoaded && (
+      <StyledButton onClick={handleSaveGame} type="button">
+        Save game
+      </StyledButton>
+    )
   );
 };
 

@@ -8,6 +8,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Potta One', cursive;
+  background: rgba(4, 147, 114, 1);
+    border: 10px double #000;
+  
+}
+html, body, #app, #app>div {
+  height: 98%
 }
 
 code {

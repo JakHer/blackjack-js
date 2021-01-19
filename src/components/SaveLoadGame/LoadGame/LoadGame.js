@@ -1,5 +1,20 @@
 import { useEffect } from 'react';
+import styled from 'styled-components';
 import { useEconomyContext } from '../../../context/Economy-Context';
+
+const StyledButton = styled.button`
+  border: none;
+  outline: none;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.4s ease background;
+  padding: 10px;
+
+  :hover {
+    background: brown;
+  }
+`;
 
 const LoadGame = () => {
   const {
@@ -30,14 +45,14 @@ const LoadGame = () => {
     }
   }, []);
 
-  return savedGame.length > 0 && !gameStarted && !gameJustLoaded ? (
-    <button onClick={handleLoadGame} type="button">
-      Load Game
-    </button>
-  ) : (
-    <button disabled type="button">
-      Load Game
-    </button>
+  return (
+    savedGame.length > 0 &&
+    !gameStarted &&
+    !gameJustLoaded && (
+      <StyledButton onClick={handleLoadGame} type="button">
+        Load Game
+      </StyledButton>
+    )
   );
 };
 

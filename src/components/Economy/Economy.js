@@ -1,9 +1,14 @@
 import { useEffect } from 'react';
+import styled from 'styled-components';
 import { useEconomyContext } from '../../context/Economy-Context';
 import { BetButtons } from './Bet-Buttons';
 
-import Money from './Money/Money';
 import Bet from './Bet/Bet';
+
+const StyledPlaceBet = styled.h2`
+  color: #fff;
+  text-align: center;
+`;
 
 export const Economy = () => {
   const { setDeckID, gameStarted } = useEconomyContext();
@@ -20,8 +25,7 @@ export const Economy = () => {
   return (
     <>
       <div>
-        {!gameStarted && <h1>Place Your Bets</h1>}
-        <Money />
+        {!gameStarted && <StyledPlaceBet>Place Your Bets</StyledPlaceBet>}
       </div>
       <div>
         <Bet />
