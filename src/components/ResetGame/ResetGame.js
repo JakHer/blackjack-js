@@ -3,14 +3,15 @@ import { useEconomyContext } from '../../context/Economy-Context';
 
 const StyledButton = styled.button`
   position: fixed;
-  bottom: 50px;
-  right: 20px;
+  bottom: 20px;
+  right: 10px;
   width: 100px;
   border: 1px solid #000;
   background: none;
   cursor: pointer;
   outline: none;
   transition: 0.4s ease background;
+  min-height: 61.61px;
 
   :hover {
     background: yellow;

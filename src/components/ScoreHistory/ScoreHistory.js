@@ -15,7 +15,7 @@ const slide = keyframes`
 `;
 
 const StyledHisoryToggler = styled.button`
-  position: absolute;
+  position: fixed;
   right: 10px;
   max-width: 100px;
   margin: 0 auto;
@@ -23,7 +23,6 @@ const StyledHisoryToggler = styled.button`
   background: none;
   outline: none;
   cursor: pointer;
-  border-radius: 10px;
   transition: 0.4s ease background;
   border: 1px solid #000;
   z-index: 9999;
@@ -40,7 +39,7 @@ const StyledH2 = styled.h2`
 
 const StyledHistoryContainer = styled.div`
   position: absolute;
-  top: 20px;
+  top: 10px;
   right: 0;
   display: flex;
   flex-direction: column;

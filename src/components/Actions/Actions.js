@@ -151,11 +151,6 @@ const Actions = () => {
       }
     }
 
-    if (dealerScore === 21 && firstDeal && !dealersMove) {
-      console.log('To Tu KURWO');
-      // setPlayersMove(true);
-    }
-
     if (playerScore > 21 && !roundOver) {
       console.log('Player LOSE');
       setFirstDeal(false);
