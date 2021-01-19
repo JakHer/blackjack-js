@@ -49,6 +49,8 @@ const Actions = () => {
     bet,
     historicArray,
     setHistoricArray,
+    denyDouble,
+    setDenyDouble,
   } = useEconomyContext();
 
   const reset = () => {
@@ -61,6 +63,7 @@ const Actions = () => {
     setDealerWin(false);
     setGameStart(false);
     setRoundOver(false);
+    setDenyDouble(false);
     setPlayerScore(0);
     setPlayerHand([]);
     setDealerScore(0);
@@ -85,6 +88,7 @@ const Actions = () => {
 
   const hit = () => {
     setRoundOver(false);
+    setDenyDouble(true);
     fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`)
       .then((resp) => resp.json())
       .then((json) => {
@@ -172,8 +176,13 @@ const Actions = () => {
     }
 
     if (!firstDeal && dealerScore === 22 && dealersHand.length === 2) {
-      console.log('Ma 2 ASY CO ZA ASY');
+      console.log('DEALER Ma 2 ASY CO ZA ASY');
       setDealerScore(21);
+    }
+
+    if (!firstDeal && playerScore === 22 && playerHand.length === 2) {
+      console.log('PLAYER Ma 2 ASY CO ZA ASY');
+      setPlayerScore(21);
     }
 
     if (playerScore > 21 && firstDeal) {
@@ -321,7 +330,7 @@ const Actions = () => {
       <button onClick={stand} type="button">
         Stand
       </button>
-      {firstDeal && (
+      {firstDeal && !denyDouble && (
         <button onClick={doubleDown} type="button">
           Double
         </button>

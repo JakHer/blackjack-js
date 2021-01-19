@@ -62,6 +62,8 @@ export const EconomyContextProvier = (props) => {
 
   const [dealersMove, setDealersMove] = useState(false);
 
+  const [denyDouble, setDenyDouble] = useState(false);
+
   const historyFromStorage =
     JSON.parse(localStorage.getItem('topHistoricResults')) || [];
 
@@ -118,6 +120,8 @@ export const EconomyContextProvier = (props) => {
     setDouble,
     historicArray,
     setHistoricArray,
+    denyDouble,
+    setDenyDouble,
   };
 
   return (
