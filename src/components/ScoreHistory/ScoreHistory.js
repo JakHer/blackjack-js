@@ -1,22 +1,71 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useEconomyContext } from '../../context/Economy-Context';
 
+const slide = keyframes`
+  0% {
+    transform: translate(50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(0);
+    opacity: 1;
+  }
+`;
+
 const StyledHisoryToggler = styled.button`
-  position: relative;
-  right: 0;
+  position: absolute;
+  right: 10px;
   max-width: 100px;
   margin: 0 auto;
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.4s ease background;
+  border: 1px solid #000;
+  z-index: 9999;
+
+  :hover {
+    background: yellow;
+  }
+`;
+
+const StyledH2 = styled.h2`
+  margin: 70px 0 20px 0;
+  text-align: center;
 `;
 
 const StyledHistoryContainer = styled.div`
   position: absolute;
-  top: 0;
+  top: 20px;
   right: 0;
   display: flex;
   flex-direction: column;
   min-width: 250px;
   max-width: 250px;
+`;
+
+const StyledArrayComponent = styled.div`
+  animation: ${slide} 0.4s ease 1;
+  background: rgba(149, 165, 166, 0.9);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledUl = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+`;
+
+const StyledLi = styled.li`
+  padding: 10px 0;
 `;
 
 const ScoreHistory = () => {
@@ -41,7 +90,8 @@ const ScoreHistory = () => {
     <StyledHistoryContainer>
       {historyFromStorage.length > 0 ? (
         <StyledHisoryToggler onClick={handleHistoryVisibility} type="button">
-          Show Historic Results
+          {historyVisible ? 'Hide ' : 'Show '}
+          Historic Results
         </StyledHisoryToggler>
       ) : (
         <StyledHisoryToggler disabled type="button">
@@ -50,14 +100,14 @@ const ScoreHistory = () => {
       )}
 
       {historyFromStorage && historyVisible && (
-        <>
-          <h1>Top historic results</h1>
-          <ul>
+        <StyledArrayComponent>
+          <StyledH2>Top historic results</StyledH2>
+          <StyledUl>
             {historyFromStorage.map((item) => (
-              <li>{item}</li>
+              <StyledLi key={item}>{item}</StyledLi>
             ))}
-          </ul>
-        </>
+          </StyledUl>
+        </StyledArrayComponent>
       )}
     </StyledHistoryContainer>
   );
