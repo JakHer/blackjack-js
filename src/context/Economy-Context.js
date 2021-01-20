@@ -67,6 +67,7 @@ export const EconomyContextProvier = (props) => {
   const [savedGame, setSaveGame] = useState([]);
 
   const [gameJustLoaded, setJustLoaded] = useState(false);
+  const [gameJustSaved, setJustSaved] = useState(false);
 
   const historyFromStorage =
     JSON.parse(localStorage.getItem('topHistoricResults')) || [];
@@ -130,6 +131,8 @@ export const EconomyContextProvier = (props) => {
     setSaveGame,
     gameJustLoaded,
     setJustLoaded,
+    gameJustSaved,
+    setJustSaved,
   };
 
   return (

@@ -24,10 +24,13 @@ const SaveGame = () => {
     roundArray,
     gameStarted,
     gameJustLoaded,
+    gameJustSaved,
+    setJustSaved,
   } = useEconomyContext();
 
   const handleSaveGame = () => {
     setSaveGame([money, round, [...roundArray]]);
+    setJustSaved(true);
   };
 
   window.addEventListener('beforeunload', (e) => {
@@ -43,7 +46,8 @@ const SaveGame = () => {
   return (
     round >= 1 &&
     !gameStarted &&
-    !gameJustLoaded && (
+    !gameJustLoaded &&
+    !gameJustSaved && (
       <StyledButton onClick={handleSaveGame} type="button">
         Save game
       </StyledButton>

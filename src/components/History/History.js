@@ -17,8 +17,7 @@ const slide = keyframes`
 const StyledHistory = styled.ul`
   background: #f1f1f1;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
   z-index: 99999;
   position: absolute;
   top: 0;
@@ -26,10 +25,11 @@ const StyledHistory = styled.ul`
   width: 100%;
   animation: ${slide} 0.4s ease 1;
   font-size: 12px;
-  max-height: 100vh;
   list-style-type: none;
   margin: 0;
   padding: 0;
+  justify-content: center;
+  align-items: center;
 `;
 
 const StyledButton = styled.button`
@@ -45,6 +45,7 @@ const StyledButton = styled.button`
   border: 1px solid #000;
   z-index: 1999;
   transition: 0.4s ease background;
+  z-index: 999999;
 
   :hover {
     background: yellow;
@@ -54,12 +55,13 @@ const StyledButton = styled.button`
 const StyledLi = styled.li`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  background: rgba(34, 167, 240, 0.4);
+  justify-content: center;
+  align-items: flex-start;
+  background: rgba(34, 167, 240, 0.1);
   border-radius: 10px;
   margin: 10px;
   padding: 10px;
+  width: 50%;
 `;
 
 const History = () => {
@@ -75,7 +77,7 @@ const History = () => {
     <div>
       {dealerHistory && roundArray.length > 0 && (
         <StyledButton type="button" onClick={handleHistoryVisibility}>
-          Show Rounds History
+          {historyVisible ? 'Hide ' : 'Show '} Rounds History
         </StyledButton>
       )}
       {historyVisible && roundArray && (

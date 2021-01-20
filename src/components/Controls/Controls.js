@@ -21,6 +21,7 @@ const StyledDeal = styled.button`
   margin-left: -100px;
   width: 200px;
   transition: 0.4s ease color;
+  font-size: 1.5rem;
 
   :hover {
     color: red;
@@ -48,6 +49,7 @@ const Controls = () => {
     round,
     setRound,
     setJustLoaded,
+    setJustSaved,
   } = useEconomyContext();
 
   const startGame = () => {
@@ -55,6 +57,7 @@ const Controls = () => {
     setFirstDeal(true);
     setRound(round + 1);
     setJustLoaded(false);
+    setJustSaved(false);
     fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=4`)
       .then((resp) => resp.json())
       .then((json) => {

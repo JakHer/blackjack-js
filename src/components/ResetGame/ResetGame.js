@@ -39,6 +39,7 @@ const ResetGame = () => {
     setRoundArray,
     setBet,
     setJustLoaded,
+    setJustSaved,
     round,
     bet,
   } = useEconomyContext();
@@ -59,6 +60,7 @@ const ResetGame = () => {
     setBet(0);
     setRoundArray([]);
     setJustLoaded(false);
+    setJustSaved(false);
   };
 
   return round === 0 && bet === 0 ? (
