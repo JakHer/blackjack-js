@@ -9,7 +9,6 @@ const StyledDeal = styled.button`
   background: none;
   color: #fff;
   cursor: pointer;
-  position: absolute;
   height: 20px;
   margin-top: 30px;
   width: 100%;
