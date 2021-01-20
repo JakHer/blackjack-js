@@ -10,12 +10,9 @@ const StyledDeal = styled.button`
   color: #fff;
   cursor: pointer;
   position: absolute;
-  top: 50%;
-  left: 50%;
   height: 20px;
   margin-top: 30px;
-  margin-left: -100px;
-  width: 200px;
+  width: 100%;
   transition: 0.4s ease color;
   font-size: 1.5rem;
 
