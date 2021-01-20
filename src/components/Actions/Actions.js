@@ -1,5 +1,47 @@
 import { useEffect } from 'react';
+import styled from 'styled-components';
 import { useEconomyContext } from '../../context/Economy-Context';
+
+const StyledButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 50px;
+`;
+
+const StyledButton = styled.button`
+  outline: none;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: 0.4s ease opacity;
+
+  :hover {
+    opacity: 0.7;
+  }
+`;
+
+const StyledSummaryWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const ParagraphWin = styled.p`
+  color: rgba(41, 241, 195, 1);
+`;
+
+const ParagraphLost = styled.p`
+  color: red;
+`;
+
+const ParagraphTie = styled.p`
+  color: #fff;
+`;
 
 const Actions = () => {
   const {
@@ -104,12 +146,7 @@ const Actions = () => {
   };
 
   const stand = () => {
-    // console.log(dealerScore);
-    // console.log(playerScore);
     setFirstDeal(false);
-
-    console.log(dealersHand);
-    console.log(playerHand);
 
     let value0 = 0;
 
@@ -328,36 +365,35 @@ const Actions = () => {
   }, [round]);
 
   return !roundOver ? (
-    <div>
-      <button onClick={hit} type="button">
+    <StyledButtonsWrapper>
+      <StyledButton onClick={hit} type="button">
         Hit
-      </button>
-      <button onClick={stand} type="button">
+      </StyledButton>
+      <StyledButton onClick={stand} type="button">
         Stand
-      </button>
+      </StyledButton>
       {firstDeal && !denyDouble && (
-        <button onClick={doubleDown} type="button">
+        <StyledButton onClick={doubleDown} type="button">
           Double
-        </button>
+        </StyledButton>
       )}
-    </div>
+    </StyledButtonsWrapper>
   ) : (
     gameStarted && roundOver && (
-      <div>
-        <p>Round {round} / 5</p>
-        {dealerWin && <p>Dealer Wins!</p>}
-        {playerWin && <p>Win ${prize}</p>}
-        {tie && <p>Tie</p>}
+      <StyledSummaryWrapper>
+        {dealerWin && <ParagraphLost>Dealer Wins!</ParagraphLost>}
+        {playerWin && <ParagraphWin>Win ${prize}</ParagraphWin>}
+        {tie && <ParagraphTie>Tie</ParagraphTie>}
         {round < 5 ? (
-          <button type="button" onClick={reset}>
+          <StyledButton type="button" onClick={reset}>
             Next Round
-          </button>
+          </StyledButton>
         ) : (
-          <button type="button" onClick={reshuffle}>
+          <StyledButton type="button" onClick={reshuffle}>
             Start New Game
-          </button>
+          </StyledButton>
         )}
-      </div>
+      </StyledSummaryWrapper>
     )
   );
 };

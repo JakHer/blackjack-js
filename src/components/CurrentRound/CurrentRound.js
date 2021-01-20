@@ -3,11 +3,9 @@ import { useEconomyContext } from '../../context/Economy-Context';
 
 const StyledRound = styled.p`
   color: #fff;
-  position: absolute;
-  width: 150px;
-  margin-right: -75px;
-  right: 50%;
-  top: 50px;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
 `;
 
 const CurrentRound = () => {

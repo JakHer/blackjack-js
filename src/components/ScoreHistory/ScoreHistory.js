@@ -83,8 +83,10 @@ const ScoreHistory = () => {
     localStorage.setItem('topHistoricResults', JSON.stringify(historicArray));
   }, [historicArray]);
 
-  const historyFromStorage =
+  let historyFromStorage =
     JSON.parse(localStorage.getItem('topHistoricResults')) || [];
+
+  historyFromStorage = [...new Set(historyFromStorage)].slice(0, 5);
 
   return (
     <StyledHistoryContainer>

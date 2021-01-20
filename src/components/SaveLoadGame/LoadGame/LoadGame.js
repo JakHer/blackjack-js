@@ -27,6 +27,7 @@ const LoadGame = () => {
     setSaveGame,
     gameJustLoaded,
     setJustLoaded,
+    gameJustSaved,
   } = useEconomyContext();
 
   const handleLoadGame = () => {
@@ -48,7 +49,8 @@ const LoadGame = () => {
   return (
     savedGame.length > 0 &&
     !gameStarted &&
-    !gameJustLoaded && (
+    !gameJustLoaded &&
+    !gameJustSaved && (
       <StyledButton onClick={handleLoadGame} type="button">
         Load Game
       </StyledButton>

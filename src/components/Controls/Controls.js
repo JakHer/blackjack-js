@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import { useEconomyContext } from '../../context/Economy-Context';
 import Actions from '../Actions/Actions';
-
-const StyledCard = styled.img`
-  max-width: 100px;
-  max-height: 100px;
-`;
+import Hands from '../Hands/Hands';
 
 const StyledDeal = styled.button`
   outline: none;
@@ -33,17 +29,13 @@ const Controls = () => {
     bet,
     deckID,
     returnValue,
-    dealersHand,
     setDealersHand,
     dealerScore,
     setDealerScore,
-    playerHand,
     setPlayerHand,
-    playerScore,
     setPlayerScore,
     gameStarted,
     setGameStart,
-    firstDeal,
     setFirstDeal,
     setPrize,
     round,
@@ -89,53 +81,7 @@ const Controls = () => {
       {dealerScore > 0 && gameStarted && (
         <div>
           <Actions />
-          <h2>Dealears hand</h2>
-
-          {firstDeal ? (
-            <p>
-              Dealears score: {dealerScore - returnValue(dealersHand[1].value)}
-            </p>
-          ) : (
-            <p>Dealears score: {dealerScore}</p>
-          )}
-          {firstDeal ? (
-            <ul>
-              <li key={dealersHand[0].value + dealersHand[0].code}>
-                <StyledCard
-                  alt={dealersHand[0].value + dealersHand[0].code}
-                  src={dealersHand[0].image}
-                />
-              </li>
-              <li>
-                <StyledCard
-                  alt="Hidden Card"
-                  src="https://www.pngkey.com/png/full/349-3492792_card-back.png"
-                />
-              </li>
-            </ul>
-          ) : (
-            <ul>
-              {dealersHand.map((item) => (
-                <li key={item.value + item.code + item.suit}>
-                  <StyledCard alt={item.value + item.code} src={item.image} />
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      )}
-
-      {playerScore > 0 && gameStarted && (
-        <div>
-          <h2>Players hand</h2>
-          <p>Player score: {playerScore}</p>
-          <ul>
-            {playerHand.map((item) => (
-              <li key={item.value + item.suit + item.code}>
-                <StyledCard alt={item.value + item.code} src={item.image} />
-              </li>
-            ))}
-          </ul>
+          <Hands />
         </div>
       )}
     </>
