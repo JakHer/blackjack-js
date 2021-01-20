@@ -151,7 +151,6 @@ const Actions = () => {
     let value0 = 0;
 
     if (playerScore >= dealerScore) {
-      console.log('Pobieram nowa karte bo za malo');
       fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`)
         .then((resp) => resp.json())
         .then((json) => {
@@ -172,13 +171,6 @@ const Actions = () => {
   };
 
   useEffect(() => {
-    console.log(
-      `ILE MAJOM DILERZY: ${dealerScore} ${playerScore} ${firstDeal} ${dealersMove}`,
-    );
-
-    console.log(`Is round over: ${roundOver}`);
-    console.log(`Round ${round}`);
-
     if (double && firstDeal) {
       setPrize(prize * 2);
       setDouble(false);
@@ -189,21 +181,18 @@ const Actions = () => {
     }
 
     if (playerScore > 21 && !roundOver) {
-      console.log('Player LOSE');
       setFirstDeal(false);
       setRoundOver(true);
       setDealerWin(true);
       setBet(0);
       setMoney(money);
     } else if (playerScore === 21 && !dealerScore === 21) {
-      console.log('PLAYER BLACKJACK');
       setFirstDeal(false);
       setRoundOver(true);
       setPlayerWin(true);
       setMoney(money + prize);
       setBet(0);
     } else if (playerScore === 21 && dealerScore === 21 && dealersMove) {
-      console.log('Player ma blackjacka  i dealer tez weic remix');
       setFirstDeal(false);
       setDealersMove(false);
       setRoundOver(true);
@@ -212,7 +201,6 @@ const Actions = () => {
       setMoney(money);
       setBet(0);
     } else if (dealerScore === 21 && playerScore < dealerScore && !firstDeal) {
-      console.log('Wygrwa diler bo ma 21 i wiecej niz player');
       setFirstDeal(false);
       setDealersMove(false);
       setRoundOver(true);
@@ -223,17 +211,14 @@ const Actions = () => {
     }
 
     if (!firstDeal && dealerScore === 22 && dealersHand.length === 2) {
-      console.log('DEALER Ma 2 ASY CO ZA ASY');
       setDealerScore(21);
     }
 
     if (!firstDeal && playerScore === 22 && playerHand.length === 2) {
-      console.log('PLAYER Ma 2 ASY CO ZA ASY');
       setPlayerScore(21);
     }
 
     if (playerScore > 21 && firstDeal) {
-      console.log('PO CO FECZOWAĆ, I TAK KASZTAN PRZEGgrał');
       setFirstDeal(false);
       setRoundOver(true);
       setDealerWin(true);
@@ -248,7 +233,6 @@ const Actions = () => {
       !roundOver &&
       dealersMove
     ) {
-      console.log('dodatkowy stand dealera ');
       stand();
       setDealersMove(true);
     }
@@ -259,8 +243,6 @@ const Actions = () => {
       !firstDeal &&
       !roundOver
     ) {
-      console.log('BYLBY REMIS ALE JEBANIE JEDZIE DALEJ Z KURWAMI (DEALER)');
-
       if (
         dealerScore <= 21 &&
         dealerScore >= playerScore &&
@@ -276,7 +258,6 @@ const Actions = () => {
       !firstDeal &&
       dealersMove
     ) {
-      console.log('TIE');
       setFirstDeal(false);
       setRoundOver(true);
       setTie(true);
@@ -286,7 +267,6 @@ const Actions = () => {
     }
 
     if (dealerScore > 21 && !firstDeal && dealersMove) {
-      console.log('Player wygrywa bo dealer ma wiecej niz 21');
       setDealersMove(false);
       setFirstDeal(false);
       setRoundOver(true);
@@ -298,7 +278,6 @@ const Actions = () => {
     }
 
     if (dealerScore === 21 && !firstDeal) {
-      console.log('dealer score = 21 i nie pierwszy deal');
       setFirstDeal(false);
       setRoundOver(true);
       setDealerWin(true);
@@ -313,9 +292,6 @@ const Actions = () => {
       !firstDeal &&
       dealersMove
     ) {
-      console.log(
-        'Dealer wygrywa bo ma wiecej punktow i player nie ma blackjacka i dealer ma mniej niz 21 punktow',
-      );
       setFirstDeal(false);
       setDealersMove(false);
       setRoundOver(true);
@@ -333,9 +309,6 @@ const Actions = () => {
       roundOver &&
       dealersMove
     ) {
-      console.log(
-        'Player Wygrywa bo ma wiecej punktow i delaer nie ma blackjacka i player ma mniej niz 21 punktow',
-      );
       setFirstDeal(false);
       setRoundOver(true);
       setPlayerWin(true);
@@ -345,7 +318,6 @@ const Actions = () => {
     }
 
     if (dealerScore <= 21 && dealerScore > playerScore && !firstDeal) {
-      console.log('Kasztanie wygrywa diler');
       setFirstDeal(false);
       setRoundOver(true);
       setDealerWin(true);

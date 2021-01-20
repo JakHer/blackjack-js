@@ -6,6 +6,10 @@
 - [Tech stack](#tech-stack)
 - [Setup](#setup)
 
+## Live Version
+
+blackjackjh.netlify.app
+
 ## About
 
 Blackjack ReactJS project
@@ -21,13 +25,14 @@ Blackjack ReactJS project
 - CustomHooks
 - localStorage
 
-## Setup
-
 ## Known issues
 
 - https://deckofcardsapi.com/ returns often 500 error
 - due to 6 decks, lots of key repeating
-  -prompt on the closing window is generic by default, changing prevented by browser, the game is saved
+- prompt on the closing window is generic by default, changing prevented by browser, the game is saved
+- error handling - no UI actions, only log
+
+## Setup
 
 ### `npm start`
 
